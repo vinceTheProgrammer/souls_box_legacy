@@ -1,0 +1,97 @@
+{
+  "RootObject": {
+    "__guid": "2f542293-23c6-48aa-a386-747cbb03c4dc",
+    "Name": "unarmedenemy",
+    "Enabled": true,
+    "NetworkMode": 2,
+    "Components": [
+      {
+        "__type": "SkinnedModelRenderer",
+        "__guid": "53a8f17c-7f74-485b-ac17-387ff424b70d",
+        "BodyGroups": 18446744073709551615,
+        "BoneMergeTarget": {
+          "_type": "component",
+          "component_id": "1b553ff6-f6dd-4599-b13d-97b29c9eefc5",
+          "go": "2f542293-23c6-48aa-a386-747cbb03c4dc",
+          "component_type": "SkinnedModelRenderer"
+        },
+        "CreateBoneObjects": false,
+        "MaterialOverride": "models/citizen/skin/skeleton/textures/skeleton_skin_bloody.vmat",
+        "Model": "models/citizen/skin/skeleton/models/skeleton_skin.vmdl",
+        "RenderType": "On",
+        "Tint": "0.43256,0.34001,0.34001,1"
+      },
+      {
+        "__type": "CitizenAnimationHelper",
+        "__guid": "6603c6c1-7b4d-4e5e-b717-45f523e12b05",
+        "BodyWeight": 1,
+        "EyesWeight": 1,
+        "HeadWeight": 1,
+        "Height": 1,
+        "LookAtEnabled": false,
+        "Target": {
+          "_type": "component",
+          "component_id": "53a8f17c-7f74-485b-ac17-387ff424b70d",
+          "go": "2f542293-23c6-48aa-a386-747cbb03c4dc",
+          "component_type": "SkinnedModelRenderer"
+        }
+      },
+      {
+        "__type": "CharacterController",
+        "__guid": "653c059a-89d5-49fb-9f79-385a6c67cdd8",
+        "Acceleration": 10,
+        "Bounciness": 0.3,
+        "GroundAngle": 45,
+        "Height": 64,
+        "IgnoreLayers": "",
+        "Radius": 16,
+        "StepHeight": 18
+      },
+      {
+        "__type": "SkinnedModelRenderer",
+        "__guid": "1b553ff6-f6dd-4599-b13d-97b29c9eefc5",
+        "BodyGroups": 0,
+        "CreateBoneObjects": false,
+        "Model": "models/citizen/citizen.vmdl",
+        "RenderType": "On",
+        "Tint": "1,1,1,1"
+      },
+      {
+        "__type": "EnemyUnarmed",
+        "__guid": "7d9a9580-49da-488f-82ac-bb3552244420",
+        "AnimationHelper": {
+          "_type": "component",
+          "component_id": "6603c6c1-7b4d-4e5e-b717-45f523e12b05",
+          "go": "2f542293-23c6-48aa-a386-747cbb03c4dc",
+          "component_type": "CitizenAnimationHelper"
+        },
+        "Controller": {
+          "_type": "component",
+          "component_id": "653c059a-89d5-49fb-9f79-385a6c67cdd8",
+          "go": "2f542293-23c6-48aa-a386-747cbb03c4dc",
+          "component_type": "CharacterController"
+        }
+      },
+      {
+        "__type": "CapsuleCollider",
+        "__guid": "c59889ae-2898-4bb6-aed8-cecca46690e4",
+        "End": "0,0,65",
+        "IsTrigger": false,
+        "Radius": 1,
+        "Start": "0,0,0",
+        "Static": false
+      },
+      {
+        "__type": "LockOnAble",
+        "__guid": "9910097a-9170-4b43-afce-952a0f4afc34"
+      }
+    ],
+    "Children": []
+  },
+  "ShowInMenu": false,
+  "MenuPath": null,
+  "MenuIcon": null,
+  "ResourceVersion": 1,
+  "__version": 1,
+  "__references": []
+}

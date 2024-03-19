@@ -1,0 +1,24 @@
+{
+  "publish": {
+    "Allowed": true,
+    "Enabled": false,
+    "ProjectConfig": {
+      "Title": "a_dungeon_ambience_loop-79423",
+      "Type": "sound",
+      "Org": "local",
+      "Ident": "a_dungeon_ambience_loop-79423",
+      "Tags": null,
+      "Schema": 0,
+      "HasAssets": false,
+      "AssetsPath": null,
+      "Resources": null,
+      "HasCode": false,
+      "CodePath": null,
+      "PackageReferences": null,
+      "EditorReferences": null,
+      "Metadata": {
+        "SingleAssetSource": "audio/a_dungeon_ambience_loop-79423.sound"
+      }
+    }
+  }
+}

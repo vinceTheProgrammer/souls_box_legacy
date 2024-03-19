@@ -1,0 +1,22 @@
+@using Sandbox;
+@using Sandbox.UI;
+@inherits PanelComponent
+
+<root>
+    <div class="healthbar @(Enemy.Components.Get<UnitInfo>().Health == Enemy.Components.Get<UnitInfo>().MaxHealth ? "hide" : "")">
+        <div class="inner">
+            <div class="fill" style="width: @(( (float) Enemy.Components.Get<UnitInfo>().Health / (float) Enemy.Components.Get<UnitInfo>().MaxHealth) * 100f)%"></div>
+        </div>
+    </div>
+</root>
+
+@code
+{
+
+	[Property] public GameObject Enemy { get; set; }
+
+	/// <summary>
+	/// the hash determines if the system should be rebuilt. If it changes, it will be rebuilt
+	/// </summary>
+	protected override int BuildHash() => System.HashCode.Combine( Enemy.Components.Get<UnitInfo>().Health );
+}

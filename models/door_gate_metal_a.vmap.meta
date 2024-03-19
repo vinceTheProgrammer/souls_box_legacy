@@ -1,0 +1,26 @@
+{
+  "publish": {
+    "Allowed": true,
+    "Enabled": false,
+    "ProjectConfig": {
+      "Title": "door_gate_metal_a",
+      "Type": "map",
+      "Org": "local",
+      "Ident": "door_gate_metal_a",
+      "Tags": null,
+      "Schema": 0,
+      "HasAssets": false,
+      "AssetsPath": null,
+      "Resources": null,
+      "HasCode": false,
+      "CodePath": null,
+      "PackageReferences": [],
+      "EditorReferences": [
+        "halfpeeps.garage_door#42972"
+      ],
+      "Metadata": {
+        "SingleAssetSource": "models/door_gate_metal_a.vmap"
+      }
+    }
+  }
+}

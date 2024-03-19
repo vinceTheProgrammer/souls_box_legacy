@@ -1,0 +1,107 @@
+{
+  "RootObject": {
+    "Id": "f9f2fa61-2b22-4256-9b13-7be2b6eeb42e",
+    "Name": "Player_Prefab",
+    "Enabled": true,
+    "NetworkMode": 2,
+    "Children": [
+      {
+        "Id": "ba4712cd-1362-4327-aa2b-2631254ab71f",
+        "Name": "Player",
+        "Rotation": "0,0,0,0",
+        "Enabled": true,
+        "NetworkMode": 2,
+        "Components": [
+          {
+            "__type": "CharacterController",
+            "Acceleration": 10,
+            "Bounciness": 0.3,
+            "GroundAngle": 45,
+            "Height": 64,
+            "IgnoreLayers": "",
+            "Radius": 16,
+            "StepHeight": 18
+          },
+          {
+            "__type": "CitizenAnimationHelper",
+            "BodyWeight": 1,
+            "EyesWeight": 1,
+            "HeadWeight": 1,
+            "Height": 1,
+            "LookAtEnabled": false,
+            "Target": {
+              "_type": "component",
+              "go": "ba4712cd-1362-4327-aa2b-2631254ab71f",
+              "component_type": "SkinnedModelRenderer"
+            }
+          },
+          {
+            "__type": "SkinnedModelRenderer",
+            "BodyGroups": 341,
+            "CreateBoneObjects": false,
+            "Model": "models/citizen/citizen.vmdl",
+            "RenderType": "On",
+            "Tint": "1,1,1,1"
+          },
+          {
+            "__type": "Player",
+            "AnimationHelper": {
+              "_type": "component",
+              "go": "ba4712cd-1362-4327-aa2b-2631254ab71f",
+              "component_type": "CitizenAnimationHelper"
+            },
+            "BackstepForce": 800,
+            "Camera": {
+              "_type": "gameobject",
+              "go": "c6568b7c-3f27-4e39-b250-ad3fed25b0b7"
+            },
+            "CameraOffset": "-215,0,66",
+            "Controller": {
+              "_type": "component",
+              "go": "ba4712cd-1362-4327-aa2b-2631254ab71f",
+              "component_type": "CharacterController"
+            },
+            "JumpForce": 300,
+            "LockedOn": false,
+            "LockOnTarget": "0,0,0",
+            "OrbitOrigin": "0,0,54",
+            "RollDistance": 250,
+            "RollForce": 50,
+            "RunSpeed": 500,
+            "WalkSpeed": 200
+          }
+        ]
+      },
+      {
+        "Id": "c6568b7c-3f27-4e39-b250-ad3fed25b0b7",
+        "Name": "Camera",
+        "Position": "-215,0,66",
+        "Tags": "maincamera",
+        "Enabled": true,
+        "NetworkMode": 2,
+        "Components": [
+          {
+            "__type": "CameraComponent",
+            "BackgroundColor": "0.33333,0.46275,0.52157,1",
+            "ClearFlags": "All",
+            "FieldOfView": 60,
+            "IsMainCamera": true,
+            "Orthographic": false,
+            "OrthographicHeight": 1204,
+            "Priority": 1,
+            "RenderExcludeTags": "",
+            "RenderTags": "",
+            "TargetEye": "None",
+            "Viewport": "0,0,1,1",
+            "ZFar": 10000,
+            "ZNear": 10
+          }
+        ]
+      }
+    ]
+  },
+  "ShowInMenu": false,
+  "MenuPath": null,
+  "MenuIcon": null,
+  "__references": []
+}

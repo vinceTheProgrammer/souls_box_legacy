@@ -1,20 +1,19 @@
 {
   "Title": "Souls Box",
   "Type": "game",
-  "Org": "local",
+  "Org": "vincetp",
   "Ident": "souls_box",
-  "Tags": null,
+  "Tags": "darksouls gamejam wip unfinished cursed",
   "Schema": 1,
   "HasAssets": true,
   "AssetsPath": "",
-  "Resources": null,
-  "MenuResources": "*",
+  "Resources": "\nimages/lock_on.svg",
   "HasCode": true,
   "CodePath": "/code/",
   "PackageReferences": [],
   "EditorReferences": null,
   "Metadata": {
-    "MaxPlayers": 64,
+    "MaxPlayers": 1,
     "MinPlayers": 1,
     "TickRate": 50,
     "GameNetworkType": "Multiplayer",
@@ -26,7 +25,179 @@
     "PerMapRanking": false,
     "LeaderboardType": "None",
     "CsProjName": "",
-    "StartupScene": "scenes/minimal.scene",
-    "ProjectTemplate": null
+    "StartupScene": "scenes/start.scene",
+    "ProjectTemplate": null,
+    "ControlModes": {
+      "Keyboard": true
+    },
+    "InputSettings": {
+      "Actions": [
+        {
+          "Name": "Forward",
+          "KeyboardCode": "W",
+          "GroupName": "Movement"
+        },
+        {
+          "Name": "Backward",
+          "KeyboardCode": "S",
+          "GroupName": "Movement"
+        },
+        {
+          "Name": "Left",
+          "KeyboardCode": "A",
+          "GroupName": "Movement"
+        },
+        {
+          "Name": "Right",
+          "KeyboardCode": "D",
+          "GroupName": "Movement"
+        },
+        {
+          "Name": "Jump",
+          "KeyboardCode": "space",
+          "GamepadCode": "B",
+          "GroupName": "Movement"
+        },
+        {
+          "Name": "Roll",
+          "KeyboardCode": "space",
+          "GamepadCode": "B",
+          "GroupName": "Movement"
+        },
+        {
+          "Name": "Backstep",
+          "KeyboardCode": "space",
+          "GamepadCode": "B",
+          "GroupName": "Movement"
+        },
+        {
+          "Name": "Run",
+          "KeyboardCode": "ALT",
+          "GamepadCode": "B",
+          "GroupName": "Movement"
+        },
+        {
+          "Name": "Walk",
+          "KeyboardCode": "CAPSLOCK",
+          "GroupName": "Movement"
+        },
+        {
+          "Name": "Light_Attack",
+          "KeyboardCode": "mouse1",
+          "GamepadCode": "SwitchRightBumper",
+          "GroupName": "Combat"
+        },
+        {
+          "Name": "Heavy_Attack",
+          "KeyboardCode": "F",
+          "GamepadCode": "RightTrigger",
+          "GroupName": "Combat"
+        },
+        {
+          "Name": "Guard",
+          "KeyboardCode": "MOUSE2",
+          "GamepadCode": "SwitchLeftBumper",
+          "GroupName": "Combat"
+        },
+        {
+          "Name": "Parry",
+          "KeyboardCode": "SHIFT",
+          "GamepadCode": "LeftTrigger",
+          "GroupName": "Combat"
+        },
+        {
+          "Name": "Switch_Spell",
+          "KeyboardCode": "r",
+          "GamepadCode": "DpadNorth",
+          "GroupName": "Equipment"
+        },
+        {
+          "Name": "Switch_Item",
+          "KeyboardCode": "f",
+          "GamepadCode": "DpadSouth",
+          "GroupName": "Equipment"
+        },
+        {
+          "Name": "Switch_Left_Weapon",
+          "KeyboardCode": "C",
+          "GamepadCode": "DpadWest",
+          "GroupName": "Equipment"
+        },
+        {
+          "Name": "Switch_Right_Weapon",
+          "KeyboardCode": "V",
+          "GamepadCode": "DpadEast",
+          "GroupName": "Equipment"
+        },
+        {
+          "Name": "Use_Item",
+          "KeyboardCode": "R",
+          "GamepadCode": "X",
+          "GroupName": "Equipment"
+        },
+        {
+          "Name": "General_Use",
+          "KeyboardCode": "E",
+          "GamepadCode": "A",
+          "GroupName": "Other"
+        },
+        {
+          "Name": "Lock_On",
+          "KeyboardCode": "MOUSE3",
+          "GamepadCode": "RightJoystickButton",
+          "GroupName": "Other"
+        },
+        {
+          "Name": "Reset_Camera",
+          "KeyboardCode": "o",
+          "GamepadCode": "RightJoystickButton",
+          "GroupName": "Other"
+        },
+        {
+          "Name": "Gesture_Menu",
+          "KeyboardCode": "G",
+          "GamepadCode": "SwitchLeftMenu",
+          "GroupName": "Other"
+        },
+        {
+          "Name": "Toggle_Two_Handed",
+          "KeyboardCode": "Y",
+          "GamepadCode": "Y",
+          "GroupName": "Other"
+        },
+        {
+          "Name": "menu_left",
+          "KeyboardCode": "LEFTARROW",
+          "GroupName": "Other"
+        },
+        {
+          "Name": "menu_right",
+          "KeyboardCode": "RIGHTARROW",
+          "GroupName": "Other"
+        },
+        {
+          "Name": "menu_up",
+          "KeyboardCode": "UPARROW",
+          "GroupName": "Other"
+        },
+        {
+          "Name": "menu_down",
+          "KeyboardCode": "DOWNARROW",
+          "GroupName": "Other"
+        },
+        {
+          "Name": "menu_select",
+          "KeyboardCode": "ENTER",
+          "GroupName": "Other"
+        },
+        {
+          "Name": "Lock_On",
+          "KeyboardCode": "Q",
+          "GroupName": "Other"
+        }
+      ],
+      "__guid": "2732d242-d0fe-464e-94e2-09cca95d148d"
+    },
+    "LaunchMode": "Normal"
   }
 }

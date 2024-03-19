@@ -1,0 +1,37 @@
+@using Sandbox;
+@using Sandbox.UI;
+@inherits PanelComponent
+
+<root>
+	<div class="vitals">
+        <div class="healthbar" style="width: @((Player.Components.Get<UnitInfo>().MaxHealth / 200) * 100)px">
+            <div class="inner">
+                <div class="fill" style="width: @(( (float) Player.Components.Get<UnitInfo>().Health / (float) Player.Components.Get<UnitInfo>().MaxHealth) * 100f)%"></div>
+            </div>
+        </div>
+        <div class="staminabar" style="width: @((Player.Components.Get<UnitInfo>().MaxStamina / 50) * 100)px">
+            <div class="inner">
+                <div class="fill" style="width: @(( (float) Player.Components.Get<UnitInfo>().Stamina / (float) Player.Components.Get<UnitInfo>().MaxStamina) * 100f)%"></div>
+            </div>
+        </div>
+    </div>
+
+
+    <div class="souls-box">
+        <div class="souls">
+            <p>@(Player.Components.Get<UnitInfo>().Souls)</p>
+        </div>
+    </div>
+    
+</root>
+
+@code
+{
+
+	[Property] public GameObject Player { get; set; }
+
+	/// <summary>
+    /// the hash determines if the system should be rebuilt. If it changes, it will be rebuilt
+    /// </summary>
+    protected override int BuildHash() => System.HashCode.Combine(Player.Components.Get<UnitInfo>().Health, Player.Components.Get<UnitInfo>().Stamina, Player.Components.Get<UnitInfo>().Souls, Player.Components.Get<UnitInfo>().MaxHealth, Player.Components.Get<UnitInfo>().MaxStamina);
+}

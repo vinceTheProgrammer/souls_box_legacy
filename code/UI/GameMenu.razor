@@ -1,0 +1,106 @@
+@using Sandbox;
+@using Sandbox.UI;
+@inherits PanelComponent
+
+<root class="@(IsPaused ? "" : "hide")">
+	<div class="options">
+        <div class="options">
+            @for (int i = 0; i < menuOptions.Length; i++)
+            {
+                <div class="button @(i == selectedIndex ? "selected" : "")" @onclick="()=>OptionSelected(i)">
+                    @menuOptions[i]
+                </div>
+            }
+        </div>
+    </div>
+</root>
+
+@code
+{
+
+    public bool IsPaused { get; set; }
+
+    private int selectedIndex = 0; // Index of the currently selected option
+
+    private string[] menuOptions = { "Inventory (WIP)", "Equipment (WIP)", "Character Stats (WIP)", "Game Settings (WIP)", "Quit Game" };
+
+    private void ToggleInventory()
+    {
+        Log.Info("Inventory");
+    }
+
+    private void ToggleEquipment()
+    {
+        Log.Info("Equipment");
+
+    }
+
+    private void ToggleStats()
+    {
+        Log.Info("Stats");
+
+    }
+
+    private void ToggleSettings()
+    {
+        Log.Info("Settings");
+
+    }
+
+    private void QuitGame()
+    {
+        Game.Close();
+
+    }
+
+    protected override void OnUpdate()
+    {
+        base.OnUpdate();
+
+
+        if (Input.EscapePressed)
+        {
+            IsPaused = !IsPaused;
+        }
+
+        if (IsPaused)
+        {
+            if (Input.Pressed("menu_left"))
+            {
+                selectedIndex = (selectedIndex - 1 + menuOptions.Length) % menuOptions.Length;
+            }
+            else if (Input.Pressed("menu_right"))
+            {
+                selectedIndex = (selectedIndex + 1) % menuOptions.Length;
+            }
+            else if (Input.Pressed("menu_select"))
+            {
+                switch (selectedIndex)
+                {
+                    case 0:
+                        ToggleInventory();
+                        break;
+                    case 1:
+                        ToggleEquipment();
+                        break;
+                    case 2:
+                        ToggleStats();
+                        break;
+                    case 3:
+                        ToggleSettings();
+                        break;
+                    case 4:
+                        QuitGame();
+                        break;
+                    default:
+                        break;
+                }
+            }
+        }
+    }
+
+    /// <summary>
+    /// the hash determines if the system should be rebuilt. If it changes, it will be rebuilt
+    /// </summary>
+    protected override int BuildHash() => System.HashCode.Combine(IsPaused, selectedIndex);
+}

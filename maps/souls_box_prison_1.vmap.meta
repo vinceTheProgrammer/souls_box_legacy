@@ -1,0 +1,57 @@
+{
+  "publish": {
+    "Allowed": true,
+    "Enabled": false,
+    "ProjectConfig": {
+      "Title": "souls_box_prison_1",
+      "Type": "map",
+      "Org": "local",
+      "Ident": "souls_box_prison_1",
+      "Tags": null,
+      "Schema": 0,
+      "HasAssets": false,
+      "AssetsPath": null,
+      "Resources": null,
+      "HasCode": false,
+      "CodePath": null,
+      "PackageReferences": [],
+      "EditorReferences": [
+        "facepunch.floor_herringbone_brick_vc#18663",
+        "facepunch.concrete_a_blend_moss_hs#18628",
+        "facepunch.wall_brick_old_bottom_moss#18726",
+        "facepunch.wall_brick_b_painted#45176",
+        "facepunch.concrete_pol_01#28935",
+        "facepunch.concrete_hs_01#28793",
+        "facepunch.stairs_rect_tile_a_blend#47188",
+        "facepunch.grass_mud_blend_01a#47043",
+        "facepunch.metal_painted_a_hs#29195",
+        "facepunch.door_lock_a#33671",
+        "facepunch.low_wood_fence_beam_1#33724",
+        "facepunch.lamp_post_pole_bracket_02#33836",
+        "azumangafans.osakasimmodel#34121",
+        "facepunch.brick_wall_debris_small_a#29168",
+        "facepunch.brick_broken_single_03#47555",
+        "facepunch.concrete_rough_a#30483",
+        "facepunch.brick_broken_single_02#47554",
+        "facepunch.brick_wall_debris_medium_a#29167",
+        "facepunch.brick_wall_debris_small_b#29169",
+        "facepunch.brick_single_03#47572",
+        "facepunch.brick_scatter_03#47565",
+        "facepunch.brick_wall_debris_big_b#29166",
+        "facepunch.brick_wall_debris_big_a#29165",
+        "facepunch.metal_fence_panel_small#33560",
+        "facepunch.catwalk_ladder_a#48203",
+        "facepunch.catwalk_ladder#48202",
+        "facepunch.concrete_simple#18632",
+        "facepunch.floor_grass_dirt_weed_blend_a#18756",
+        "facepunch.wall_limestone_brick_large#18706",
+        "facepunch.wall_brick_b2#47421",
+        "fish.gt_sword#23043",
+        "facepunch.dirtpile_01_decal#28995"
+      ],
+      "Metadata": {
+        "SingleAssetSource": "maps/souls_box_prison_1.vmap"
+      }
+    }
+  }
+}

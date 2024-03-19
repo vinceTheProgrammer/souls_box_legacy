@@ -1,0 +1,26 @@
+@using Sandbox;
+@using Sandbox.UI;
+@inherits PanelComponent
+
+<root>
+    <img class="lockon @(Player.Components.Get<Player>().LockedOn ? "" : "hide")" style="left: @(LeftValue); top: @(TopValue);" src="images/lock_on.svg" />
+</root>
+
+@code
+{
+
+    [Property] public GameObject Player { get; set; }
+    private float LeftValue;
+    private float TopValue;
+
+    protected override void OnUpdate()
+    {
+        LeftValue = Player.Components.Get<Player>().LockOnTarget.ToScreen().x * Screen.Width - 6f;
+        TopValue = Player.Components.Get<Player>().LockOnTarget.ToScreen().y * Screen.Height - 6f;
+    }
+
+	/// <summary>
+    /// the hash determines if the system should be rebuilt. If it changes, it will be rebuilt
+    /// </summary>
+    protected override int BuildHash() => System.HashCode.Combine(LeftValue, TopValue, Player.Components.Get<Player>().LockedOn, Player.Components.Get<Player>().LockOnTarget);
+}
