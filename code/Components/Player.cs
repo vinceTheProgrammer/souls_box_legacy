@@ -63,6 +63,23 @@ public sealed class Player : Component
 	[Property]
 	public List<LockOnAble> LockOnAbles { get; set; }
 
+	[Property]
+	public int FatigueAmount { get; set; }
+
+	[Property]
+	public int LightAttackFatigueAmount { get; set; }
+
+	[Property]
+	public int RollFatigueAmount { get; set; }
+
+	[Property]
+	public int JumpFatigueAmount { get; set; }
+
+	[Property]
+	public float FatiguePeriod { get; set; }
+
+	TimeSince lastFatigue;
+
 	public Angles ForwardAngles { get; set; }
 
 	public Angles LastMoveDirection { get; set; }
@@ -71,15 +88,19 @@ public sealed class Player : Component
 
 	Transform _initialCameraTransform;
 
-	private bool IsRolling;
+	public bool IsRolling = false;
+
+	public bool IsRunning = false;
 
 	TimeSince timeSince = 0;
 
 	bool AttackHit = false;
 
+	bool AttackTired = false;
+
 	bool IsHitboxActive = false;
 
-	bool IsAttacking = false;
+	public bool IsAttacking = false;
 
 	protected override void OnUpdate()
 	{
@@ -185,6 +206,24 @@ public sealed class Player : Component
 
 		float targetSpeed = Input.Down( "Run" ) && !Input.Down("Guard") ? RunSpeed : WalkSpeed;
 
+		Log.Info( targetSpeed + "   :   " + RunSpeed );
+
+		if (targetSpeed == RunSpeed)
+		{
+			IsRunning = true;
+			if (lastFatigue > FatiguePeriod)
+			{
+				Log.Info( "Draining..." );
+				Components.Get<UnitInfo>().Tire( FatigueAmount );
+				lastFatigue = 0;
+			}
+		} else
+		{
+			IsRunning = false;
+		}
+
+		if ( Components.Get<UnitInfo>().Stamina == 0 ) targetSpeed = WalkSpeed;
+
 		var targetVelocity = Input.AnalogMove.Normal * targetSpeed * Camera.Transform.Rotation;
 
 		//Log.Info(swordOffset );
@@ -197,10 +236,14 @@ public sealed class Player : Component
 		}
 
 		if ( IsAttacking ) {
-			
-			//GameObject.Components.Get<BoxCollider>().Enabled = true;
+			if ( !AttackTired )
+			{
+				Components.Get<UnitInfo>().Tire( LightAttackFatigueAmount );
+				AttackTired = true;
+			}
 			if (IsHitboxActive)
 			{
+
 				if ( Sword.Components.TryGet<Collider>( out Collider collider ) )
 				{
 					foreach ( var item in collider.Touching )
@@ -210,7 +253,7 @@ public sealed class Player : Component
 						{
 							if ( !AttackHit )
 							{
-								info.Damage( new Random().Next( 12, 30 ), Sword, GameObject);
+								info.Damage( new Random().Next( 20, 42 ), Sword, GameObject);
 								AttackHit = true;
 							}
 						}
@@ -219,6 +262,8 @@ public sealed class Player : Component
 			}
 			return;
 		};
+
+		AttackTired = false;
 
 		if ( IsRolling && timeSince > 0.5)
 		{
@@ -258,6 +303,7 @@ public sealed class Player : Component
 				{
 						Controller.Punch( JumpForce * Vector3.Up );
 						if ( AnimationHelper != null ) AnimationHelper.TriggerJump();
+						Components.Get<UnitInfo>().Tire( JumpFatigueAmount );
 				}
 				else if ( Input.AnalogMove.Normal.Length > 0 )
 				{
@@ -266,6 +312,7 @@ public sealed class Player : Component
 					{
 						AnimationHelper.SpecialMove = CitizenAnimationHelper.SpecialMoveStyle.Roll;
 						IsRolling = true;
+						Components.Get<UnitInfo>().Tire( RollFatigueAmount );
 						timeSince = 0;
 					}
 				}
@@ -277,7 +324,7 @@ public sealed class Player : Component
 
 			//Log.Info( Input.MouseWheel );
 
-			if ( Input.Pressed( "Light_Attack" ) )
+			if ( Input.Pressed( "Light_Attack" ) && Components.Get<UnitInfo>().Stamina >= LightAttackFatigueAmount)
 			{
 				Log.Info( "Light Attack" );
 				AnimationHelper.Target.Set( "b_light_attack", true);

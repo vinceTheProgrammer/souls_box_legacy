@@ -87,14 +87,19 @@
                 "go": "4500c3f6-e4c4-4df1-aeab-25b7cf6c5653",
                 "component_type": "CharacterController"
               },
+              "FatigueAmount": 1,
+              "FatiguePeriod": 0.1,
+              "JumpFatigueAmount": 10,
               "JumpForce": 300,
+              "LightAttackFatigueAmount": 30,
               "LockedOn": false,
               "LockOnAbles": [],
               "LockOnTarget": "0,0,0",
               "OrbitOrigin": "0,0,54",
               "RollDistance": 250,
+              "RollFatigueAmount": 10,
               "RollForce": 10,
-              "RunSpeed": 300,
+              "RunSpeed": 320,
               "ShieldIKTarget": {
                 "_type": "gameobject",
                 "go": "776864f4-7bfd-4734-ba44-719c46118780"
@@ -121,8 +126,10 @@
               "Health": 700,
               "MaxHealth": 700,
               "MaxStamina": 100,
+              "recoveryAmount": 1,
+              "recoveryPeriod": 0.05,
               "Stamina": 0,
-              "Type": "None"
+              "Type": "Player"
             },
             {
               "__type": "PlayerFootsteps",
@@ -1647,11 +1654,24 @@
       "NetworkMode": 2,
       "Components": [
         {
-          "__type": "Prop",
-          "__guid": "3e79d53c-30db-4882-a5b5-3612d741284c",
-          "Health": 0,
-          "IsStatic": true,
-          "Model": "models/weapons/sword/sword.vmdl"
+          "__type": "SkinnedModelRenderer",
+          "__guid": "613a2ff5-6215-41d5-8f02-c1575bef8d84",
+          "BodyGroups": 18446744073709551613,
+          "CreateBoneObjects": false,
+          "Model": "models/weapons/sword/sword.vmdl",
+          "RenderType": "On",
+          "Tint": "1,1,1,1"
+        },
+        {
+          "__type": "ModelCollider",
+          "__guid": "de22328c-34d8-4db0-944b-f7781b749ff1",
+          "IsTrigger": false,
+          "Model": "models/weapons/sword/sword.vmdl",
+          "Static": false
+        },
+        {
+          "__type": "Bonfire",
+          "__guid": "96bb4740-1941-48bf-b29b-a6eaa372238e"
         }
       ],
       "Children": [
@@ -2015,6 +2035,8 @@
           "Health": 90,
           "MaxHealth": 90,
           "MaxStamina": 0,
+          "recoveryAmount": 0,
+          "recoveryPeriod": 0,
           "Stamina": 0,
           "Type": "Enemy"
         },
@@ -3010,6 +3032,8 @@
           "Health": 90,
           "MaxHealth": 90,
           "MaxStamina": 0,
+          "recoveryAmount": 0,
+          "recoveryPeriod": 0,
           "Stamina": 0,
           "Type": "Enemy"
         },
@@ -3999,6 +4023,8 @@
           "Health": 90,
           "MaxHealth": 90,
           "MaxStamina": 0,
+          "recoveryAmount": 0,
+          "recoveryPeriod": 0,
           "Stamina": 0,
           "Type": "Enemy"
         },
@@ -5191,6 +5217,8 @@
           "Health": 1000,
           "MaxHealth": 1000,
           "MaxStamina": 0,
+          "recoveryAmount": 0,
+          "recoveryPeriod": 0,
           "Stamina": 0,
           "Type": "Enemy"
         }
@@ -6802,6 +6830,8 @@
           "Health": 90,
           "MaxHealth": 90,
           "MaxStamina": 0,
+          "recoveryAmount": 0,
+          "recoveryPeriod": 0,
           "Stamina": 0,
           "Type": "Enemy"
         },
@@ -7739,7 +7769,7 @@
   },
   "Title": "start",
   "Description": "",
-  "LastSaved": "2024-03-19T01:15:52.8930744-05:00",
+  "LastSaved": "2024-03-19T04:19:17.1496142-05:00",
   "ResourceVersion": 1,
   "__version": 1,
   "__references": [

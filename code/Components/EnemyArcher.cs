@@ -21,7 +21,7 @@ public sealed class EnemyArcher : Component
 	public float backingInterval = new Random().Next( 5, 15 ); // Interval at which AI checks for backing up
 
 	public float forwardDistance = 300f; // Distance at which AI starts backing up
-	public float forwardSpeed = 40f; // Speed at which AI backs up
+	public float forwardSpeed = 60f; // Speed at which AI backs up
 	public float forwardInterval = new Random().Next( 5, 15 ); // Interval at which AI checks for backing up
 
 	private Vector3 initialPosition; // Initial position of the AI
@@ -166,7 +166,7 @@ public sealed class EnemyArcher : Component
 		if ( backingTimer >= backingInterval )
 		{
 
-			backingInterval = new Random().Next( 5, 8 );
+			backingInterval = new Random().Next( 1, 3 );
 
 			backingTimer = 0f;
 

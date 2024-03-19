@@ -28,6 +28,14 @@ public sealed class UnitInfo : Component
 	[Property]
 	public UnitType Type { get; set; } = UnitType.None;
 
+	[Property]
+	public int recoveryAmount { get; set; }
+
+	[Property]
+	public float recoveryPeriod { get; set; }
+
+	TimeSince lastRecovered;
+
 	public int Souls { get; private set; }
 
 	public bool IsAlive { get; private set; } = true;
@@ -37,6 +45,30 @@ public sealed class UnitInfo : Component
 	protected override void OnUpdate()
 	{
 		if ( !IsAlive ) Transform.LocalRotation = Transform.LocalRotation.Angles().WithRoll( 90 ).WithYaw( lastYaw );
+	}
+
+	protected override void OnFixedUpdate()
+	{
+		if (Type == UnitType.Player)
+		{
+			if (Components.Get<Player>() != null)
+			{
+
+				Log.Info( "Running: " + Components.Get<Player>().IsRunning );
+				Log.Info( "Rolling: " + Components.Get<Player>().IsRolling );
+				Log.Info( "Attacking: " + Components.Get<Player>().IsAttacking );
+
+				if ( Components.Get<Player>().IsRunning || Components.Get<Player>().IsRolling || Components.Get<Player>().IsAttacking ) return;
+			}
+		}
+
+
+		if (lastRecovered > recoveryPeriod )
+		{
+			Stamina = Math.Clamp( Stamina + recoveryAmount, 0, MaxStamina );
+			lastRecovered = 0;
+		}
+		
 	}
 
 	protected override void OnStart()
@@ -63,6 +95,13 @@ public sealed class UnitInfo : Component
 		}
 
 		if ( Health <= 0 ) Kill();
+	}
+
+	public void Tire(int fatigue)
+	{
+		if ( !IsAlive ) return;
+
+		Stamina = Math.Clamp( Stamina - fatigue, 0, MaxStamina );
 	}
 
 	public void Kill()
