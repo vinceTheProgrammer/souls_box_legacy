@@ -4,9 +4,14 @@ using System;
 public sealed class Arrow : Component
 {
 	[Property]
-	float TimeToLive { get; set; }
+	public float TimeToLive { get; set; }
+
+	[Property]
+	public GameObject ArrowTip { get; set; }
 
 	public GameObject owner {  get; set; }
+
+	float raySize = 1f;
 
 	public Vector3 initialVelocity { get; set; } 
 
@@ -18,6 +23,20 @@ public sealed class Arrow : Component
 		if ( aliveTime > TimeToLive ) GameObject.Destroy();
 
 		if (Components.Get<Rigidbody>().Velocity.Length < initialVelocity.Length) GameObject.Destroy();
+
+		var forwardTrace = Scene.Trace.Ray( ArrowTip.Transform.Position, ArrowTip.Transform.Position + (initialVelocity.Normal * 1f) ).Size( 3f ).WithoutTags("projectile").UseHitboxes( true ).Run();
+
+		if (forwardTrace.Hitbox != null)
+		{
+			GameObject hitObject = forwardTrace.Hitbox.GameObject;
+
+			if ( hitObject.Components.TryGet<UnitInfo>( out UnitInfo info ) )
+			{
+				info.Damage( new Random().Next( 100, 250 ), GameObject, owner );
+			}
+			GameObject.Destroy();
+		}
+
 
 		if ( Components.TryGet( out Collider collider ) )
 		{
@@ -31,7 +50,7 @@ public sealed class Arrow : Component
 
 					info.Damage( new Random().Next( 100, 250 ), GameObject, owner );
 				}
-				GameObject.Destroy();
+				
 			}
 		}
 	}

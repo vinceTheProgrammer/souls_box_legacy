@@ -28,6 +28,10 @@
       {
         "__type": "Arrow",
         "__guid": "b322f9aa-0efc-428a-a2d5-229850a4ebd4",
+        "ArrowTip": {
+          "_type": "gameobject",
+          "go": "33649193-364e-4a9f-895f-6c5c09fbeea4"
+        },
         "TimeToLive": 100
       },
       {
@@ -39,7 +43,15 @@
         "Static": false
       }
     ],
-    "Children": []
+    "Children": [
+      {
+        "__guid": "33649193-364e-4a9f-895f-6c5c09fbeea4",
+        "Name": "Tip",
+        "Position": "0,-9.3,0.5",
+        "Enabled": true,
+        "NetworkMode": 2
+      }
+    ]
   },
   "ShowInMenu": false,
   "MenuPath": null,

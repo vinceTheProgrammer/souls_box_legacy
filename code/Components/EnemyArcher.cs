@@ -32,7 +32,7 @@ public sealed class EnemyArcher : Component
 	public float forwardInterval = new Random().Next( 5, 15 ); // Interval at which AI checks for backing up
 
 	public float attackInterval = 3f;
-	public float arrowSpeed = 100f;
+	public float arrowSpeed = 1000f;
 	public Vector3 arrowSpawnOffset = new Vector3(-20f, 3f, 54f);
 
 	private Vector3 initialPosition; // Initial position of the AI

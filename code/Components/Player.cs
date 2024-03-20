@@ -213,7 +213,7 @@ public sealed class Player : Component
 			IsRunning = true;
 			if (lastFatigue > FatiguePeriod)
 			{
-				Log.Info( "Draining..." );
+				//Log.Info( "Draining..." );
 				Components.Get<UnitInfo>().Tire( FatigueAmount );
 				lastFatigue = 0;
 			}
