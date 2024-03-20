@@ -54,9 +54,9 @@ public sealed class UnitInfo : Component
 			if (Components.Get<Player>() != null)
 			{
 
-				Log.Info( "Running: " + Components.Get<Player>().IsRunning );
-				Log.Info( "Rolling: " + Components.Get<Player>().IsRolling );
-				Log.Info( "Attacking: " + Components.Get<Player>().IsAttacking );
+				//Log.Info( "Running: " + Components.Get<Player>().IsRunning );
+				//Log.Info( "Rolling: " + Components.Get<Player>().IsRolling );
+				//Log.Info( "Attacking: " + Components.Get<Player>().IsAttacking );
 
 				if ( Components.Get<Player>().IsRunning || Components.Get<Player>().IsRolling || Components.Get<Player>().IsAttacking ) return;
 			}
@@ -89,9 +89,16 @@ public sealed class UnitInfo : Component
 		{
 			var damageTrace = Scene.Trace.Ray( weapon.Transform.Position, Transform.Position.WithZ(Transform.Position.z + 30) ).Size( 1f ).WithTag( "character" ).UseHitboxes().Run();
 			DamageInfo info = new DamageInfo( (float)damage, attacker, weapon, damageTrace.Hitbox);
-			helper.ProceduralHitReaction( info, 5f );
-			Log.Info(helper);
+			helper.ProceduralHitReaction( info, 5f, -damageTrace.Direction * 100f);
+			//Log.Info(helper);
 			
+		}
+
+		if (Type == UnitType.Enemy )
+		{
+			Vector3 directionToAttacker = (attacker.Transform.Position - Transform.Position) / Transform.Position.Length;
+			Components.Get<SoundPointComponent>().StartSound();
+			Components.Get<CharacterController>().Punch(-directionToAttacker * 1000f);
 		}
 
 		if ( Health <= 0 ) Kill();

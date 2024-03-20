@@ -18,6 +18,11 @@ EnemyHud {
 				height: 100%;
 				background-color: firebrick;
 			}
+
+			> .fill-laggy {
+				height: 100%;
+				background-color: rgba(190, 150, 57, 0.3);
+			}
 		}
 	}
 

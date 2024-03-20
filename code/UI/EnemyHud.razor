@@ -1,11 +1,13 @@
 @using Sandbox;
 @using Sandbox.UI;
+@using System;
 @inherits PanelComponent
 
 <root>
     <div class="healthbar @(Enemy.Components.Get<UnitInfo>().Health == Enemy.Components.Get<UnitInfo>().MaxHealth ? "hide" : "")">
         <div class="inner">
             <div class="fill" style="width: @(( (float) Enemy.Components.Get<UnitInfo>().Health / (float) Enemy.Components.Get<UnitInfo>().MaxHealth) * 100f)%"></div>
+            <div class="fill-laggy" style="width: @(( ((float) laggyHealth - (float) Enemy.Components.Get<UnitInfo>().Health) / (float) Enemy.Components.Get<UnitInfo>().MaxHealth) * 100f)%"></div>
         </div>
     </div>
 </root>
@@ -15,8 +17,23 @@
 
 	[Property] public GameObject Enemy { get; set; }
 
+    float laggyHealth = 0;
+    float healthTransitionSpeed = 200f;
+
+    protected override void OnUpdate()
+    {
+        if (laggyHealth > Enemy.Components.Get<UnitInfo>().Health)
+        {
+            laggyHealth = Math.Clamp(laggyHealth - healthTransitionSpeed * Time.Delta, 0, Enemy.Components.Get<UnitInfo>().MaxHealth);
+        }
+        else
+        {
+            laggyHealth = Enemy.Components.Get<UnitInfo>().Health;
+        }
+    }
+
 	/// <summary>
 	/// the hash determines if the system should be rebuilt. If it changes, it will be rebuilt
 	/// </summary>
-	protected override int BuildHash() => System.HashCode.Combine( Enemy.Components.Get<UnitInfo>().Health );
+	protected override int BuildHash() => System.HashCode.Combine( Enemy.Components.Get<UnitInfo>().Health, laggyHealth);
 }

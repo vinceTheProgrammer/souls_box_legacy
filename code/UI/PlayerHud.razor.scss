@@ -6,8 +6,8 @@ PlayerHud {
 
 	> .vitals {
 		position: absolute;
-		top: 10px;
-		left: 10px;
+		top: 50px;
+		left: 50px;
 		flex-direction: column;
 
 		> .healthbar {
@@ -24,6 +24,11 @@ PlayerHud {
 					height: 100%;
 					background-color: rgba(186, 25, 25, 0.3);
 				}
+
+				> .fill-laggy {
+					height: 100%;
+					background-color: rgba(190, 150, 57, 0.3);
+				}
 			}
 		}
 
@@ -36,10 +41,16 @@ PlayerHud {
 			> .inner {
 				background-color: rgba(41,41,41, 0.3);
 				flex-grow: 1;
+				flex-direction: row;
 
 				> .fill {
 					height: 100%;
 					background-color: rgba(52, 91, 34, 0.3);
+				}
+
+				> .fill-laggy {
+					height: 100%;
+					background-color: rgba(190, 150, 57, 0.3);
 				}
 			}
 		}
@@ -53,14 +64,16 @@ PlayerHud {
 
 	.souls {
 		position: absolute;
-		bottom: 10px;
-		right: 10px;
-		width: 150px;
+		bottom: 50px;
+		right: 50px;
+		width: 175px;
 		height: 50px;
 		background-color: rgba(41,41,41, 0.6);
 		border-width: 3px;
 		border-color: rgba(41,41,41,1);
-		justify-content: center;
+		justify-content: flex-end;
 		align-content: center;
+		padding-right: 10px;
+		padding-top: 3px;
 	}
 }

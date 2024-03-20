@@ -1,5 +1,6 @@
 @using Sandbox;
 @using Sandbox.UI;
+@using System;
 @inherits PanelComponent
 
 <root>
@@ -7,11 +8,13 @@
         <div class="healthbar" style="width: @((Player.Components.Get<UnitInfo>().MaxHealth / 200) * 100)px">
             <div class="inner">
                 <div class="fill" style="width: @(( (float) Player.Components.Get<UnitInfo>().Health / (float) Player.Components.Get<UnitInfo>().MaxHealth) * 100f)%"></div>
+                <div class="fill-laggy" style="width: @(( ((float) laggyHealth - (float) Player.Components.Get<UnitInfo>().Health) / (float) Player.Components.Get<UnitInfo>().MaxHealth) * 100f)%"></div>
             </div>
         </div>
         <div class="staminabar" style="width: @((Player.Components.Get<UnitInfo>().MaxStamina / 50) * 100)px">
             <div class="inner">
                 <div class="fill" style="width: @(( (float) Player.Components.Get<UnitInfo>().Stamina / (float) Player.Components.Get<UnitInfo>().MaxStamina) * 100f)%"></div>
+                <div class="fill-laggy" style="width: @(( ((float) laggyStamina - (float) Player.Components.Get<UnitInfo>().Stamina) / (float) Player.Components.Get<UnitInfo>().MaxStamina) * 100f)%"></div>
             </div>
         </div>
     </div>
@@ -28,10 +31,34 @@
 @code
 {
 
-	[Property] public GameObject Player { get; set; }
+    [Property] public GameObject Player { get; set; }
+
+    float laggyHealth = 0;
+    float healthTransitionSpeed = 300f;
+    float laggyStamina = 0;
+    float staminaTransitionSpeed = 100f;
+
+    protected override void OnUpdate()  
+    {
+        if (laggyStamina > Player.Components.Get<UnitInfo>().Stamina)
+        {
+            laggyStamina = Math.Clamp(laggyStamina - staminaTransitionSpeed * Time.Delta, 0, Player.Components.Get<UnitInfo>().MaxStamina);
+        } else
+        {
+            laggyStamina = Player.Components.Get<UnitInfo>().Stamina;
+        }
+        if (laggyHealth > Player.Components.Get<UnitInfo>().Health)
+        {
+            laggyHealth = Math.Clamp(laggyHealth - healthTransitionSpeed * Time.Delta, 0, Player.Components.Get<UnitInfo>().MaxHealth);
+        }
+        else
+        {
+            laggyHealth = Player.Components.Get<UnitInfo>().Health;
+        }
+    }
 
 	/// <summary>
     /// the hash determines if the system should be rebuilt. If it changes, it will be rebuilt
     /// </summary>
-    protected override int BuildHash() => System.HashCode.Combine(Player.Components.Get<UnitInfo>().Health, Player.Components.Get<UnitInfo>().Stamina, Player.Components.Get<UnitInfo>().Souls, Player.Components.Get<UnitInfo>().MaxHealth, Player.Components.Get<UnitInfo>().MaxStamina);
+    protected override int BuildHash() => System.HashCode.Combine(Player.Components.Get<UnitInfo>().Health, Player.Components.Get<UnitInfo>().Stamina, Player.Components.Get<UnitInfo>().Souls, Player.Components.Get<UnitInfo>().MaxHealth, Player.Components.Get<UnitInfo>().MaxStamina, laggyStamina, laggyHealth);
 }

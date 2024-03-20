@@ -52,6 +52,7 @@ public sealed class LockOnAble : Component
 				Player.Components.Get<Player>().LockedOnIndex = Player.Components.Get<Player>().LockOnAbles.IndexOf( lockOnAble );
 				Player.Components.Get<Player>().LockOnTarget = Player.Components.Get<Player>().LockOnAbles[Player.Components.Get<Player>().LockedOnIndex].LockOnNode.Transform.Position;
 			}
+			Player.Components.Get<Player>().LockedOn = false;
 			MyIndex = -1;
 		}
 	}

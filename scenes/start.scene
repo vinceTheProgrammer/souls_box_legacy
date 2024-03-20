@@ -89,7 +89,7 @@
               },
               "FatigueAmount": 1,
               "FatiguePeriod": 0.1,
-              "JumpFatigueAmount": 10,
+              "JumpFatigueAmount": 30,
               "JumpForce": 300,
               "LightAttackFatigueAmount": 30,
               "LockedOn": false,
@@ -97,7 +97,7 @@
               "LockOnTarget": "0,0,0",
               "OrbitOrigin": "0,0,54",
               "RollDistance": 250,
-              "RollFatigueAmount": 10,
+              "RollFatigueAmount": 30,
               "RollForce": 10,
               "RunSpeed": 320,
               "ShieldIKTarget": {
@@ -126,7 +126,7 @@
               "Health": 700,
               "MaxHealth": 700,
               "MaxStamina": 100,
-              "recoveryAmount": 1,
+              "recoveryAmount": 2,
               "recoveryPeriod": 0.05,
               "Stamina": 0,
               "Type": "Player"
@@ -2042,13 +2042,28 @@
         },
         {
           "__type": "ModelHitboxes",
-          "__guid": "52d6072f-d062-42a2-b5dc-3fa0c67d5c6f",
-          "Renderer": {
-            "_type": "component",
-            "component_id": "1ccb5938-ba42-4ded-86ea-5cd9179827e7",
-            "go": "ce2218d2-ecbd-4b6d-8be8-22b4b724a3f3",
-            "component_type": "SkinnedModelRenderer"
-          }
+          "__guid": "52d6072f-d062-42a2-b5dc-3fa0c67d5c6f"
+        },
+        {
+          "__type": "SoundPointComponent",
+          "__guid": "d6bebbe1-eee3-4723-ac97-7c0403f9e6f0",
+          "DistanceAttenuation": false,
+          "DistanceAttenuationOverride": false,
+          "Force2d": false,
+          "MaxRepeatTime": 1,
+          "MinRepeatTime": 1,
+          "Occlusion": false,
+          "OcclusionOverride": false,
+          "OcclusionRadius": 32,
+          "Pitch": 1,
+          "PlayOnStart": false,
+          "ReflectionOverride": false,
+          "Reflections": false,
+          "Repeat": false,
+          "SoundEvent": "audio/break_flesh_small.sound",
+          "SoundOverride": false,
+          "StopOnNew": true,
+          "Volume": 1
         }
       ],
       "Children": [
@@ -3040,6 +3055,27 @@
         {
           "__type": "ModelHitboxes",
           "__guid": "81ce87c5-8a80-449d-ae07-c7a27d6b5d69"
+        },
+        {
+          "__type": "SoundPointComponent",
+          "__guid": "ee663693-319c-4c64-bd1b-397a7f83b316",
+          "DistanceAttenuation": false,
+          "DistanceAttenuationOverride": false,
+          "Force2d": false,
+          "MaxRepeatTime": 1,
+          "MinRepeatTime": 1,
+          "Occlusion": false,
+          "OcclusionOverride": false,
+          "OcclusionRadius": 32,
+          "Pitch": 1,
+          "PlayOnStart": false,
+          "ReflectionOverride": false,
+          "Reflections": false,
+          "Repeat": false,
+          "SoundEvent": "audio/break_flesh_small.sound",
+          "SoundOverride": false,
+          "StopOnNew": true,
+          "Volume": 1
         }
       ],
       "Children": [
@@ -4031,6 +4067,27 @@
         {
           "__type": "ModelHitboxes",
           "__guid": "8a8c5057-5d9b-46b5-9ec5-91afa073257f"
+        },
+        {
+          "__type": "SoundPointComponent",
+          "__guid": "14868175-552a-4f4c-92b4-3ae46e20bae8",
+          "DistanceAttenuation": false,
+          "DistanceAttenuationOverride": false,
+          "Force2d": false,
+          "MaxRepeatTime": 1,
+          "MinRepeatTime": 1,
+          "Occlusion": false,
+          "OcclusionOverride": false,
+          "OcclusionRadius": 32,
+          "Pitch": 1,
+          "PlayOnStart": false,
+          "ReflectionOverride": false,
+          "Reflections": false,
+          "Repeat": false,
+          "SoundEvent": "audio/break_flesh_small.sound",
+          "SoundOverride": false,
+          "StopOnNew": true,
+          "Volume": 1
         }
       ],
       "Children": [
@@ -4079,7 +4136,7 @@
                 {
                   "__guid": "19c3049a-2ebf-4722-a911-c61e244aca53",
                   "Name": "spine_1",
-                  "Position": "5.610426,0.00001204311,0.00001202375",
+                  "Position": "5.610411,0.00001204142,0.00001202372",
                   "Rotation": "-0.000396952,0.0000002086163,0.0002739429,0.9999998",
                   "Enabled": true,
                   "NetworkMode": 2,
@@ -4845,7 +4902,7 @@
             {
               "__guid": "60433685-3a85-44c1-b890-5cba5e5a4a2c",
               "Name": "hand_L_IK_target",
-              "Position": "0.6941151,20.39478,39.24791",
+              "Position": "0.6941151,20.39478,39.24792",
               "Rotation": "0.7698929,0.5281296,-0.2142482,0.2871266",
               "Enabled": true,
               "NetworkMode": 2
@@ -6858,6 +6915,27 @@
             "_type": "gameobject",
             "go": "4500c3f6-e4c4-4df1-aeab-25b7cf6c5653"
           }
+        },
+        {
+          "__type": "SoundPointComponent",
+          "__guid": "05fb4c15-7b83-4a58-9a87-1adf645d3141",
+          "DistanceAttenuation": false,
+          "DistanceAttenuationOverride": false,
+          "Force2d": false,
+          "MaxRepeatTime": 1,
+          "MinRepeatTime": 1,
+          "Occlusion": false,
+          "OcclusionOverride": false,
+          "OcclusionRadius": 32,
+          "Pitch": 1,
+          "PlayOnStart": false,
+          "ReflectionOverride": false,
+          "Reflections": false,
+          "Repeat": false,
+          "SoundEvent": "audio/break_flesh_small.sound",
+          "SoundOverride": false,
+          "StopOnNew": true,
+          "Volume": 1
         }
       ],
       "Children": [
@@ -6890,7 +6968,7 @@
         {
           "__guid": "eead2305-8120-4243-a4fa-c20d8321f117",
           "Name": "pelvis",
-          "Position": "1.266602,-0.0000004932328,31.07361",
+          "Position": "1.266602,-0.0000004932329,31.07361",
           "Rotation": "0.4999994,0.4999994,0.5000004,-0.5000009",
           "Enabled": true,
           "NetworkMode": 2,
@@ -7657,8 +7735,8 @@
         {
           "__guid": "0a8d8b10-bddb-4ef4-866e-df60c5a56a9e",
           "Name": "root_IK",
-          "Position": "1.266602,-0.0000004932328,0",
-          "Rotation": "0.0000000000000000000002117582,0.00000001490116,-0.00000007450578,-1",
+          "Position": "1.266602,-0.0000004932329,0",
+          "Rotation": "0.0000000000000000000004235165,0.00000001490116,-0.00000007450579,-1",
           "Enabled": true,
           "NetworkMode": 2,
           "Children": [
@@ -7769,7 +7847,7 @@
   },
   "Title": "start",
   "Description": "",
-  "LastSaved": "2024-03-19T04:19:17.1496142-05:00",
+  "LastSaved": "2024-03-19T20:49:34.7141455-05:00",
   "ResourceVersion": 1,
   "__version": 1,
   "__references": [

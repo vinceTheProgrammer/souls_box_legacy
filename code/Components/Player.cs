@@ -169,7 +169,7 @@ public sealed class Player : Component
 				if ( LockOnAbles.Count > 0 )
 				{
 					if ( LockedOnIndex > LockOnAbles.Count - 1 || LockedOnIndex < 0) LockedOnIndex = 0;
-					Log.Info( LockedOnIndex );
+					//Log.Info( LockedOnIndex );
 					LockOnTarget = LockOnAbles[LockedOnIndex].LockOnNode.Transform.Position;
 					LockedOn = !LockedOn;
 				}
@@ -187,7 +187,7 @@ public sealed class Player : Component
 			{
 				LockedOnIndex++;
 			}
-			Log.Info( LockedOnIndex );
+			//Log.Info( LockedOnIndex );
 			LockOnTarget = LockOnAbles[LockedOnIndex].LockOnNode.Transform.Position;
 		}
 		else if ( LockedOn && Input.MouseWheel.y < 0 )
@@ -200,13 +200,13 @@ public sealed class Player : Component
 			{
 				LockedOnIndex--;
 			}
-			Log.Info( LockedOnIndex );
+			//Log.Info( LockedOnIndex );
 			LockOnTarget = LockOnAbles[LockedOnIndex].LockOnNode.Transform.Position;
 		}
 
 		float targetSpeed = Input.Down( "Run" ) && !Input.Down("Guard") ? RunSpeed : WalkSpeed;
 
-		Log.Info( targetSpeed + "   :   " + RunSpeed );
+		//Log.Info( targetSpeed + "   :   " + RunSpeed );
 
 		if (targetSpeed == RunSpeed)
 		{
@@ -248,7 +248,7 @@ public sealed class Player : Component
 				{
 					foreach ( var item in collider.Touching )
 					{
-						Log.Info( item );
+						//Log.Info( item );
 						if ( item.Components.TryGet<UnitInfo>( out UnitInfo info ) )
 						{
 							if ( !AttackHit )
@@ -326,13 +326,13 @@ public sealed class Player : Component
 
 			if ( Input.Pressed( "Light_Attack" ) && Components.Get<UnitInfo>().Stamina >= LightAttackFatigueAmount)
 			{
-				Log.Info( "Light Attack" );
+				//Log.Info( "Light Attack" );
 				AnimationHelper.Target.Set( "b_light_attack", true);
 			}
 
 			if ( Input.Pressed( "Heavy_Attack" ) )
 			{
-				Log.Info( "Heavy Attack" );
+				//Log.Info( "Heavy Attack" );
 			}	
 
 			if ( Input.Down("Guard") && !IsRolling )
