@@ -81,12 +81,13 @@ public sealed class EnemyArcher : Component
 
 		if ( Controller.IsOnGround )
 		{
-			TryShootPlayer();
 			float distanceToPlayer = Transform.Position.Distance( Player.Transform.Position );
 			if ( distanceToPlayer > 2000f ) return;
 
 			if ( CanSeePlayer() )
 			{
+				TryShootPlayer();
+				Log.Info( "Can see player" );
 				if ( distanceToPlayer < 2000f && distanceToPlayer >= forwardDistance - 5f )
 				{
 					approachBehavior(distanceToPlayer);
@@ -124,7 +125,18 @@ public sealed class EnemyArcher : Component
 
 	bool CanSeePlayer()
 	{
-		return true;
+		bool hitPlayer = false;
+
+		var traceToPlayer = Scene.Trace.Ray( Transform.Position.WithZ(Transform.Position.z + 45), Player.Transform.Position.WithZ(Player.Transform.Position.z + 45 )).Size( 3f ).IgnoreGameObjectHierarchy(GameObject).UseHitboxes( true ).Run();
+
+		Gizmo.Draw.Line(traceToPlayer.StartPosition, traceToPlayer.EndPosition);
+
+		if ( traceToPlayer.Hitbox != null && traceToPlayer.Hitbox.GameObject.Components.TryGet( out Player _ ) )
+		{
+			hitPlayer = true;
+		}
+
+		return hitPlayer;
 	}
 
 	void approachBehavior(float distanceToPlayer)
