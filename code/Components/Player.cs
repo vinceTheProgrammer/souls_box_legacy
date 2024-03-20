@@ -150,7 +150,7 @@ public sealed class Player : Component
 
 		String list = String.Join( ",", LockOnAbles );
 
-		Log.Info(list);
+		//Log.Info(list);
 
 		//Log.Info( LockOnTarget.ToScreen().x + ", " + LockOnTarget.ToScreen().y );
 
@@ -337,7 +337,7 @@ public sealed class Player : Component
 
 			if ( Input.Down("Guard") && !IsRolling )
 			{
-				Log.Info( AnimationHelper.DuckLevel );
+				//Log.Info( AnimationHelper.DuckLevel );
 				AnimationHelper.IkLeftHand = ShieldIKTarget;
 				AnimationHelper.DuckLevel = 0.3f;
 				WalkSpeed = 100f;

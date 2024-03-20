@@ -19,12 +19,14 @@
     {
       "__guid": "72feb3d2-4d4b-446d-bf34-650c07e8462c",
       "Name": "Player_Prefab",
+      "Position": "-1817.595,-3947.101,803.1846",
       "Enabled": true,
       "NetworkMode": 2,
       "Children": [
         {
           "__guid": "4500c3f6-e4c4-4df1-aeab-25b7cf6c5653",
           "Name": "Player",
+          "Position": "0,0,0",
           "Rotation": "0,0,0,0",
           "Tags": "player",
           "Enabled": true,
@@ -142,15 +144,6 @@
               }
             },
             {
-              "__type": "BoxCollider",
-              "__guid": "e0b2abc2-67e6-430e-93f5-89b5c35b9b73",
-              "__enabled": false,
-              "Center": "0,0,39",
-              "IsTrigger": true,
-              "Scale": "25,25,69",
-              "Static": false
-            },
-            {
               "__type": "ModelHitboxes",
               "__guid": "4a4a5fad-5b94-47db-98cd-9adfa0e8e93c",
               "Renderer": {
@@ -159,6 +152,14 @@
                 "go": "4500c3f6-e4c4-4df1-aeab-25b7cf6c5653",
                 "component_type": "SkinnedModelRenderer"
               }
+            },
+            {
+              "__type": "BoxCollider",
+              "__guid": "e5835a84-8b4e-4279-b953-1737d49dbf08",
+              "Center": "0,0,32.5",
+              "IsTrigger": true,
+              "Scale": "20,20,65",
+              "Static": false
             }
           ],
           "Children": [
@@ -6782,6 +6783,15 @@
           "RenderType": "On",
           "Tint": "1,1,1,1"
         }
+      ],
+      "Children": [
+        {
+          "__guid": "e3b6d5a1-6d3c-42c3-b2a0-587c091f2cea",
+          "Name": "Arrow Spawn Location",
+          "Position": "0,31.31673,0",
+          "Enabled": true,
+          "NetworkMode": 2
+        }
       ]
     },
     {
@@ -6904,6 +6914,14 @@
             "component_id": "4b141614-e95a-4ffd-be77-5de7fc2c81c5",
             "go": "0d53801d-e1ec-43d6-bca1-53b29b1af806",
             "component_type": "CitizenAnimationHelper"
+          },
+          "ArrowPrefab": {
+            "_type": "gameobject",
+            "go": "88ec5feb-6d87-46cb-8a4a-1a59cf1c1935"
+          },
+          "ArrowSpawnLocation": {
+            "_type": "gameobject",
+            "go": "e3b6d5a1-6d3c-42c3-b2a0-587c091f2cea"
           },
           "Controller": {
             "_type": "component",
@@ -7822,6 +7840,14 @@
           ]
         }
       ]
+    },
+    {
+      "__guid": "88ec5feb-6d87-46cb-8a4a-1a59cf1c1935",
+      "Name": "arrow",
+      "Position": "-802.3162,-4068.442,875.4451",
+      "Enabled": true,
+      "NetworkMode": 2,
+      "__Prefab": "prefabs/arrow.prefab"
     }
   ],
   "SceneProperties": {
@@ -7847,7 +7873,7 @@
   },
   "Title": "start",
   "Description": "",
-  "LastSaved": "2024-03-19T20:49:34.7141455-05:00",
+  "LastSaved": "2024-03-20T00:47:39.3852805-05:00",
   "ResourceVersion": 1,
   "__version": 1,
   "__references": [

@@ -1,0 +1,52 @@
+{
+  "RootObject": {
+    "__guid": "607bee35-669d-4137-9f9b-c66594ad5c40",
+    "Name": "arrow",
+    "Enabled": true,
+    "NetworkMode": 2,
+    "Components": [
+      {
+        "__type": "ModelRenderer",
+        "__guid": "6e37851a-0177-489e-8dca-5f4842776ba5",
+        "BodyGroups": 18446744073709551615,
+        "Model": "models/training_camp/arrow.vmdl",
+        "RenderType": "On",
+        "Tint": "1,1,1,1"
+      },
+      {
+        "__type": "Rigidbody",
+        "__guid": "15fc8f63-e939-4411-9915-ac6ee3a43cc3",
+        "AngularDamping": 0,
+        "Gravity": false,
+        "LinearDamping": 0,
+        "Locking": {},
+        "MassOverride": 0,
+        "MotionEnabled": true,
+        "RigidbodyFlags": 0,
+        "StartAsleep": false
+      },
+      {
+        "__type": "Arrow",
+        "__guid": "b322f9aa-0efc-428a-a2d5-229850a4ebd4",
+        "TimeToLive": 100
+      },
+      {
+        "__type": "BoxCollider",
+        "__guid": "df494ff4-b366-49eb-95dc-28c7e80340ce",
+        "Center": "0,-0.9,0.55",
+        "IsTrigger": false,
+        "Scale": "0.5,16.75,0.5",
+        "Static": false
+      }
+    ],
+    "Children": []
+  },
+  "ShowInMenu": false,
+  "MenuPath": null,
+  "MenuIcon": null,
+  "ResourceVersion": 1,
+  "__version": 1,
+  "__references": [
+    "fish.gt_arrow"
+  ]
+}

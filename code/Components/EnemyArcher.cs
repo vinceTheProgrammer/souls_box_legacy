@@ -16,6 +16,13 @@ public sealed class EnemyArcher : Component
 	[Property]
 	public CitizenAnimationHelper AnimationHelper { get; set; }
 
+	[Property]
+	public GameObject ArrowPrefab { get; set; }
+
+	[Property]
+	public GameObject ArrowSpawnLocation { get; set; }
+
+
 	public float backingDistance = 300f; // Distance at which AI starts backing up
 	public float backingSpeed = 40f; // Speed at which AI backs up
 	public float backingInterval = new Random().Next( 5, 15 ); // Interval at which AI checks for backing up
@@ -23,6 +30,10 @@ public sealed class EnemyArcher : Component
 	public float forwardDistance = 300f; // Distance at which AI starts backing up
 	public float forwardSpeed = 60f; // Speed at which AI backs up
 	public float forwardInterval = new Random().Next( 5, 15 ); // Interval at which AI checks for backing up
+
+	public float attackInterval = 3f;
+	public float arrowSpeed = 100f;
+	public Vector3 arrowSpawnOffset = new Vector3(-20f, 3f, 54f);
 
 	private Vector3 initialPosition; // Initial position of the AI
 	private bool isBacking = false; // Flag to indicate if AI is currently backing up
@@ -32,6 +43,8 @@ public sealed class EnemyArcher : Component
 	private float forwardTimer = 0f; // Timer for backing interval
 
 	TimeSince timeSinceAdjustYaw;
+
+	TimeSince timeSinceArrowShot;
 
 	protected override void OnUpdate()
 	{
@@ -68,6 +81,7 @@ public sealed class EnemyArcher : Component
 
 		if ( Controller.IsOnGround )
 		{
+			TryShootPlayer();
 			float distanceToPlayer = Transform.Position.Distance( Player.Transform.Position );
 			if ( distanceToPlayer > 2000f ) return;
 
@@ -199,5 +213,40 @@ public sealed class EnemyArcher : Component
 		Controller.Accelerate( targetVelocity );
 		Controller.Acceleration = 10.0f;
 		Controller.ApplyFriction( 5.0f, 0f );
+	}
+
+	void TryShootPlayer()
+	{
+		//Log.Info( "Tried" );
+		if ( timeSinceArrowShot > attackInterval)
+		{
+			ShootPlayer();
+			timeSinceArrowShot = 0f;
+		}
+	}
+
+	void ShootPlayer()
+	{
+		Vector3 directionToPlayer = (((Player.Transform.Position - arrowSpawnOffset) + new Vector3(0,0,45)) - Transform.Position).Normal;
+		CreateArrow( directionToPlayer * arrowSpeed );
+	}
+
+	void CreateArrow(Vector3 launchVector)
+	{
+		GameObject arrow = ArrowPrefab.Clone(ArrowSpawnLocation.Transform.Position);
+
+		arrow.Components.Get<Arrow>().owner = GameObject;
+		arrow.Components.Get<Arrow>().initialVelocity = launchVector;
+
+		arrow.Components.Get<Rigidbody>().Velocity = launchVector;
+
+		Angles launchAngles = launchVector.EulerAngles;
+		Rotation launchRotation = Rotation.From( launchAngles );
+
+		arrow.Transform.Rotation = launchRotation.RotateAroundAxis(Transform.LocalRotation.Up, 90);
+
+		//arrow.Transform.LocalRotation = arrow.Transform.LocalRotation.Angles().WithYaw( arrow.Transform.LocalRotation.Yaw() + 90 );
+
+		arrow.Components.Get<Rigidbody>().Velocity = launchVector;
 	}
 }
