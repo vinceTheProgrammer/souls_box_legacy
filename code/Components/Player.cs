@@ -92,6 +92,8 @@ public sealed class Player : Component
 
 	public bool IsRunning = false;
 
+	public bool isGuarding = false;
+
 	TimeSince timeSince = 0;
 
 	bool AttackHit = false;
@@ -101,6 +103,18 @@ public sealed class Player : Component
 	bool IsHitboxActive = false;
 
 	public bool IsAttacking = false;
+
+	public bool IsCommittedToAttack = false;
+
+	GameObject bone;
+
+	enum LastAttack
+	{
+		ss_light_1,
+		ss_light_2,
+	}
+
+	LastAttack lastAttack = LastAttack.ss_light_1;
 
 	protected override void OnUpdate()
 	{
@@ -130,22 +144,20 @@ public sealed class Player : Component
 			}
 			else
 			{
+				Vector3 rotateAround = bone.Transform.Position.WithZ(Transform.Position.z);
 				ForwardAngles += Input.AnalogLook;
 				ForwardAngles = ForwardAngles.WithPitch( MathX.Clamp( ForwardAngles.pitch, -30.0f, 60.0f ) );
-				_initialCameraTransform.Position = (Transform.Position + CameraOffset);
-				Camera.Transform.World = _initialCameraTransform.RotateAround( Transform.Position + OrbitOrigin, ForwardAngles );
-				var cameraTrace = Scene.Trace.Ray( Transform.Position + OrbitOrigin, Camera.Transform.World.Position ).Size( 5f ).WithoutTags( "player" ).Run();
-				Camera.Transform.Position = cameraTrace.EndPosition;
+				_initialCameraTransform.Position = (rotateAround + CameraOffset);
+				Camera.Transform.World = _initialCameraTransform.RotateAround(rotateAround, ForwardAngles );
+				var cameraTrace = Scene.Trace.Ray( rotateAround, Camera.Transform.World.Position ).Size( 5f ).WithoutTags( "player" ).Run();
+				//Camera.Transform.Position = cameraTrace.EndPosition;
 				Transform.Rotation = Rotation.Lerp( Transform.Rotation, Rotation.FromYaw( LastMoveDirection.yaw ), 0.2f );
 			}
-			
 		}
 	}
 
 	protected override void OnFixedUpdate()
 	{
-		
-
 		base.OnFixedUpdate();
 
 		String list = String.Join( ",", LockOnAbles );
@@ -235,7 +247,38 @@ public sealed class Player : Component
 			if ( animationCollisionTrace.Distance < swordOffset ) Transform.Position += ( -animationCollisionTrace.Direction * MathF.Pow((swordOffset - animationCollisionTrace.Distance) / 32f, 3));
 		}
 
+
+		if ( Input.Pressed( "Light_Attack" ) && Components.Get<UnitInfo>().Stamina >= LightAttackFatigueAmount )
+		{
+
+			if ( lastAttack == LastAttack.ss_light_1 && IsCommittedToAttack == false && IsAttacking == true )
+			{
+				AnimationHelper.Target.Set( "b_light_attack_2", true );
+				lastAttack = LastAttack.ss_light_2;
+			} else if (IsAttacking == true && IsCommittedToAttack == false && lastAttack == LastAttack.ss_light_2)
+			{	
+				AnimationHelper.Target.Set( "b_light_attack", true );
+				lastAttack = LastAttack.ss_light_1;
+			}
+			else if (!IsAttacking)
+			{
+				AnimationHelper.Target.Set( "b_light_attack", true );
+				lastAttack = LastAttack.ss_light_1;
+			}
+		}
+
 		if ( IsAttacking ) {
+
+			//Vector3 animRootPosition = SkinnedModelRenderer.RootMotion.Position;
+
+			Vector3 bonePos = SkinnedModelRenderer.GetBoneObject( 0 ).Transform.LocalPosition;
+
+			Log.Info(bonePos);
+
+			//Transform.Position = animRootPosition;
+
+
+
 			if ( !AttackTired )
 			{
 				Components.Get<UnitInfo>().Tire( LightAttackFatigueAmount );
@@ -324,12 +367,6 @@ public sealed class Player : Component
 
 			//Log.Info( Input.MouseWheel );
 
-			if ( Input.Pressed( "Light_Attack" ) && Components.Get<UnitInfo>().Stamina >= LightAttackFatigueAmount)
-			{
-				//Log.Info( "Light Attack" );
-				AnimationHelper.Target.Set( "b_light_attack", true);
-			}
-
 			if ( Input.Pressed( "Heavy_Attack" ) )
 			{
 				//Log.Info( "Heavy Attack" );
@@ -337,12 +374,13 @@ public sealed class Player : Component
 
 			if ( Input.Down("Guard") && !IsRolling )
 			{
-				//Log.Info( AnimationHelper.DuckLevel );
+				isGuarding = true;
 				AnimationHelper.IkLeftHand = ShieldIKTarget;
 				AnimationHelper.DuckLevel = 0.3f;
 				WalkSpeed = 100f;
 			} else
 			{
+				isGuarding = false;
 				AnimationHelper.IkLeftHand = null;
 				AnimationHelper.DuckLevel = 0f;
 				WalkSpeed = 150f;
@@ -380,10 +418,14 @@ public sealed class Player : Component
 			{
 				case "attack_start":
 					IsAttacking = true;
+					IsCommittedToAttack = true;	
 					break;
 				case "attack_end":
 					IsAttacking = false;
 					AttackHit = false;
+					Vector3 bonePos = bone.Transform.LocalPosition;
+					Vector3 forward = (Transform.Position + Transform.Rotation.Forward * bonePos.x).WithZ( Transform.Position.z );
+					Transform.Position = forward;
 					break;
 				case "hitbox_active":
 					IsHitboxActive = true;
@@ -391,8 +433,14 @@ public sealed class Player : Component
 				case "hitbox_inactive":
 					IsHitboxActive = false;
 					break;
+				case "attack_over":
+					IsCommittedToAttack = false;
+					break;
 			}
 		};
+
+		SkinnedModelRenderer.CreateBoneObjects = true;
+		bone = SkinnedModelRenderer.GetBoneObject( 0 );
 	}
 
 	protected override void DrawGizmos()

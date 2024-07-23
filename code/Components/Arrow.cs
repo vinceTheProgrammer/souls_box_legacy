@@ -11,8 +11,6 @@ public sealed class Arrow : Component
 
 	public GameObject owner {  get; set; }
 
-	float raySize = 1f;
-
 	public Vector3 initialVelocity { get; set; } 
 
 	TimeSince aliveTime;

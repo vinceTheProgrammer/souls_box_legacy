@@ -22,13 +22,20 @@
 
     protected override void OnUpdate()
     {
-        if (laggyHealth > Enemy.Components.Get<UnitInfo>().Health)
+
+        TimeSince timeSinceStaminaLag = Enemy.Components.Get<UnitInfo>().timeSinceStaminaLag;
+        TimeSince timeSinceHealthLag = Enemy.Components.Get<UnitInfo>().timeSinceHealthLag;
+
+        if (timeSinceHealthLag > 1f) 
         {
-            laggyHealth = Math.Clamp(laggyHealth - healthTransitionSpeed * Time.Delta, 0, Enemy.Components.Get<UnitInfo>().MaxHealth);
-        }
-        else
-        {
-            laggyHealth = Enemy.Components.Get<UnitInfo>().Health;
+            if (laggyHealth > Enemy.Components.Get<UnitInfo>().Health)
+            {
+                laggyHealth = Math.Clamp(laggyHealth - healthTransitionSpeed * Time.Delta, 0, Enemy.Components.Get<UnitInfo>().MaxHealth);
+            }
+            else
+            {
+                laggyHealth = Enemy.Components.Get<UnitInfo>().Health;
+            }
         }
     }
 

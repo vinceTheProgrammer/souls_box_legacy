@@ -38,22 +38,32 @@
     float laggyStamina = 0;
     float staminaTransitionSpeed = 100f;
 
-    protected override void OnUpdate()  
+    protected override void OnUpdate()
     {
-        if (laggyStamina > Player.Components.Get<UnitInfo>().Stamina)
+        TimeSince timeSinceStaminaLag = Player.Components.Get<UnitInfo>().timeSinceStaminaLag;
+        TimeSince timeSinceHealthLag = Player.Components.Get<UnitInfo>().timeSinceHealthLag;
+        if (timeSinceStaminaLag > 1f)
         {
-            laggyStamina = Math.Clamp(laggyStamina - staminaTransitionSpeed * Time.Delta, 0, Player.Components.Get<UnitInfo>().MaxStamina);
-        } else
-        {
-            laggyStamina = Player.Components.Get<UnitInfo>().Stamina;
+            if (laggyStamina > Player.Components.Get<UnitInfo>().Stamina)
+            {
+                laggyStamina = Math.Clamp(laggyStamina - staminaTransitionSpeed * Time.Delta, 0, Player.Components.Get<UnitInfo>().MaxStamina);
+            }
+            else
+            {
+                laggyStamina = Player.Components.Get<UnitInfo>().Stamina;
+            }
         }
-        if (laggyHealth > Player.Components.Get<UnitInfo>().Health)
+
+        if (timeSinceHealthLag > 1f)
         {
-            laggyHealth = Math.Clamp(laggyHealth - healthTransitionSpeed * Time.Delta, 0, Player.Components.Get<UnitInfo>().MaxHealth);
-        }
-        else
-        {
-            laggyHealth = Player.Components.Get<UnitInfo>().Health;
+            if (laggyHealth > Player.Components.Get<UnitInfo>().Health)
+            {
+                laggyHealth = Math.Clamp(laggyHealth - healthTransitionSpeed * Time.Delta, 0, Player.Components.Get<UnitInfo>().MaxHealth);
+            }
+            else
+            {
+                laggyHealth = Player.Components.Get<UnitInfo>().Health;
+            }
         }
     }
 

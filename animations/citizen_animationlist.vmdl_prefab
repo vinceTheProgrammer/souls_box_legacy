@@ -11014,7 +11014,7 @@
 								[
 									{
 										_class = "AnimFile"
-										name = "ShortSwordLightAttack"
+										name = "ShortSwordLightAttack1"
 										children = 
 										[
 											{
@@ -11033,7 +11033,20 @@
 											{
 												_class = "AnimEvent"
 												event_class = "AE_GENERIC_EVENT"
-												event_frame = 34
+												event_frame = 11
+												event_keys = 
+												{
+													TypeName = ""
+													Int = 0
+													Float = 0.0
+													Vector = [ 0.0, 0.0, 0.0 ]
+													StringData = "attack_over"
+												}
+											},
+											{
+												_class = "AnimEvent"
+												event_class = "AE_GENERIC_EVENT"
+												event_frame = 15
 												event_keys = 
 												{
 													TypeName = ""
@@ -11046,7 +11059,7 @@
 											{
 												_class = "AnimEvent"
 												event_class = "AE_GENERIC_EVENT"
-												event_frame = 21
+												event_frame = 9
 												event_keys = 
 												{
 													TypeName = ""
@@ -11059,7 +11072,7 @@
 											{
 												_class = "AnimEvent"
 												event_class = "AE_GENERIC_EVENT"
-												event_frame = 25
+												event_frame = 11
 												event_keys = 
 												{
 													TypeName = ""
@@ -11083,10 +11096,101 @@
 										disable_compression = false
 										disable_interpolation = false
 										enable_scale = false
-										source_filename = "animations/Citizen@ShortSwordLightAttack.fbx"
+										source_filename = "animations/Citizen@ShortSwordLightAttack1.fbx"
 										start_frame = -1
 										end_frame = -1
-										framerate = 45.0
+										framerate = -1.0
+										take = 0
+										reverse = false
+									},
+									{
+										_class = "AnimFile"
+										name = "ShortSwordLightAttack2"
+										children = 
+										[
+											{
+												_class = "AnimEvent"
+												event_class = "AE_GENERIC_EVENT"
+												event_frame = 0
+												event_keys = 
+												{
+													TypeName = ""
+													Int = 0
+													Float = 0.0
+													Vector = [ 0.0, 0.0, 0.0 ]
+													StringData = "attack_start"
+												}
+											},
+											{
+												_class = "AnimEvent"
+												event_class = "AE_GENERIC_EVENT"
+												event_frame = 16
+												event_keys = 
+												{
+													TypeName = ""
+													Int = 0
+													Float = 0.0
+													Vector = [ 0.0, 0.0, 0.0 ]
+													StringData = "attack_end"
+												}
+											},
+											{
+												_class = "AnimEvent"
+												event_class = "AE_GENERIC_EVENT"
+												event_frame = 5
+												event_keys = 
+												{
+													TypeName = ""
+													Int = 0
+													Float = 0.0
+													Vector = [ 0.0, 0.0, 0.0 ]
+													StringData = "hitbox_active"
+												}
+											},
+											{
+												_class = "AnimEvent"
+												event_class = "AE_GENERIC_EVENT"
+												event_frame = 7
+												event_keys = 
+												{
+													TypeName = ""
+													Int = 0
+													Float = 0.0
+													Vector = [ 0.0, 0.0, 0.0 ]
+													StringData = "hitbox_inactive"
+												}
+											},
+											{
+												_class = "AnimEvent"
+												event_class = "AE_GENERIC_EVENT"
+												event_frame = 8
+												event_keys = 
+												{
+													TypeName = ""
+													Int = 0
+													Float = 0.0
+													Vector = [ 0.0, 0.0, 0.0 ]
+													StringData = "attack_over"
+												}
+											},
+										]
+										activity_name = ""
+										activity_weight = 1
+										weight_list_name = ""
+										fade_in_time = 0.2
+										fade_out_time = 0.2
+										looping = false
+										delta = false
+										worldSpace = false
+										hidden = false
+										anim_markup_ordered = false
+										disable_compression = false
+										disable_interpolation = false
+										enable_scale = false
+										source_filename = "animations/Citizen@ShortSwordLightAttack2.fbx"
+										start_frame = -1
+										end_frame = -1
+										framerate = -1.0
 										take = 0
 										reverse = false
 									},

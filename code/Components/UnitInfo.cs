@@ -42,6 +42,9 @@ public sealed class UnitInfo : Component
 
 	private float lastYaw;
 
+	public TimeSince timeSinceHealthLag;
+	public TimeSince timeSinceStaminaLag;
+
 	protected override void OnUpdate()
 	{
 		if ( !IsAlive ) Transform.LocalRotation = Transform.LocalRotation.Angles().WithRoll( 90 ).WithYaw( lastYaw );
@@ -82,8 +85,18 @@ public sealed class UnitInfo : Component
 	{
 		if ( !IsAlive ) return;
 
+		if (Type == UnitType.Player)
+		{
+			if (Components.Get<Player>().isGuarding)
+			{
+				return;
+			}
+		}
+
 
 		Health = Math.Clamp(Health - damage, 0, MaxHealth);
+
+		timeSinceHealthLag = 0;
 
 		if (GameObject.Components.TryGet<CitizenAnimationHelper>( out CitizenAnimationHelper helper ))
 		{
@@ -108,7 +121,10 @@ public sealed class UnitInfo : Component
 	{
 		if ( !IsAlive ) return;
 
+
 		Stamina = Math.Clamp( Stamina - fatigue, 0, MaxStamina );
+
+		timeSinceStaminaLag = 0;
 	}
 
 	public void Kill()

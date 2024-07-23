@@ -129,8 +129,6 @@ public sealed class EnemyArcher : Component
 
 		var traceToPlayer = Scene.Trace.Ray( Transform.Position.WithZ(Transform.Position.z + 45), Player.Transform.Position.WithZ(Player.Transform.Position.z + 45 )).Size( 3f ).IgnoreGameObjectHierarchy(GameObject).UseHitboxes( true ).Run();
 
-		Gizmo.Draw.Line(traceToPlayer.StartPosition, traceToPlayer.EndPosition);
-
 		if ( traceToPlayer.Hitbox != null && traceToPlayer.Hitbox.GameObject.Components.TryGet( out Player _ ) )
 		{
 			hitPlayer = true;

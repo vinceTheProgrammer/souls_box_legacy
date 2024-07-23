@@ -19,14 +19,12 @@
     {
       "__guid": "72feb3d2-4d4b-446d-bf34-650c07e8462c",
       "Name": "Player_Prefab",
-      "Position": "-1817.595,-3947.101,803.1846",
       "Enabled": true,
       "NetworkMode": 2,
       "Children": [
         {
           "__guid": "4500c3f6-e4c4-4df1-aeab-25b7cf6c5653",
           "Name": "Player",
-          "Position": "0,0,0",
           "Rotation": "0,0,0,0",
           "Tags": "player",
           "Enabled": true,
@@ -39,7 +37,7 @@
               "Bounciness": 0.3,
               "GroundAngle": 45,
               "Height": 64,
-              "IgnoreLayers": "",
+              "IgnoreLayers": "projectile",
               "Radius": 16,
               "StepHeight": 14
             },
@@ -156,9 +154,9 @@
             {
               "__type": "BoxCollider",
               "__guid": "e5835a84-8b4e-4279-b953-1737d49dbf08",
-              "Center": "0,0,32.5",
+              "Center": "0,0,35.5",
               "IsTrigger": true,
-              "Scale": "20,20,65",
+              "Scale": "20,20,68",
               "Static": false
             }
           ],
@@ -7845,6 +7843,7 @@
       "__guid": "88ec5feb-6d87-46cb-8a4a-1a59cf1c1935",
       "Name": "arrow",
       "Position": "-802.3162,-4068.442,875.4451",
+      "Tags": "projectile",
       "Enabled": true,
       "NetworkMode": 2,
       "__Prefab": "prefabs/arrow.prefab"
@@ -7873,7 +7872,7 @@
   },
   "Title": "start",
   "Description": "",
-  "LastSaved": "2024-03-20T00:47:39.3852805-05:00",
+  "LastSaved": "2024-03-21T01:21:14.6209757-05:00",
   "ResourceVersion": 1,
   "__version": 1,
   "__references": [
